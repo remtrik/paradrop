@@ -4,9 +4,6 @@ A standalone build of the **HOT Drop Rush Mini-Game** (Paradrop internally), ori
 limited-time promotional event on the PUBG website
 (`https://pubg.com/en/events/hotsummerdrop`).
 
-This repository contains the game fully extracted and repackaged — all game assets are hosted alongside the app and the backend
-API is stubbed out.
-
 ## What this is
 
 - The game client (`paradrop-game.js`) and its assets were pulled from the PUBG event site.
@@ -17,8 +14,7 @@ API is stubbed out.
     of the CDN(`pubgwebgame-sdk-test.sisyphusbot.com`).
   - Stubs the game-data API in `index.html` so that game can start and run a round without a server.
 
-> Note: Because the backend is stubbed, scores are not submitted anywhere and there is no
-> real multiplayer/leaderboard. This is a single-player, offline experience.
+> Note: Scores are not submitted anywhere and there is no leaderboard.
 
 ## Files
 
@@ -31,11 +27,11 @@ API is stubbed out.
 
 ## Running in a browser
 
-Open `fill in when actions get back up`.
+Open [remtrik.github.io/paradrop](https://remtrik.github.io/paradrop/).
 
 ## Running as a desktop app (Electron)
 
-A standalone Windows executable is provided in releases — just
+A standalone Windows executable is provided in releases - just
 double-click to play. No installation required.
 
 ## Disclaimer
