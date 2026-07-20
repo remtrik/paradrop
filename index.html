@@ -61,7 +61,7 @@
       container: c,
       locale: 'en',
       gameParams: {
-        assetBaseUrl: 'https://github.com/remtrik/paradrop/tree/main/'
+        assetBaseUrl: new URL('.', window.location.href).href
       },
       callbacks: {
         onStart: () => {
