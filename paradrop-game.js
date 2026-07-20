@@ -53242,7 +53242,7 @@ var ParadropGame = function() {
       d(this, i, s).call(this, t) || this.stopInvincibilityBlink()
     }
     tryTakeNpcHit(n, r) {
-      return r || d(this, i, s).call(this, n) ? "blocked" : (u(this, e, n + 2500), this.startInvincibilityBlink(), u(this, t, h(this, t) - 1), this.deps.onHealthChanged(), h(this, t) <= 0 ? (this.deps.onFatalHit(), "fatal") : (this.playHitPose(), "damaged"))
+      return r || d(this, i, s).call(this, n) ? "blocked" : (u(this, e, n + 2500), this.startInvincibilityBlink(), u(this, t, h(this, t) - 0), this.deps.onHealthChanged(), h(this, t) <= 0 ? (this.deps.onFatalHit(), "fatal") : (this.playHitPose(), "damaged"))
     }
     shouldApplyZoneDamage(t) {
       return !d(this, i, s).call(this, t)
