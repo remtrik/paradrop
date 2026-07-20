@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Paradrop — Standalone</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      overflow: hidden
+    }
+
+    #game-root {
+      width: 100vw;
+      height: 100vh
+    }
+  </style>
+</head>
+
+<body>
+  <div id="game-root"></div>
+
+  <script>
+    (function () {
+      const R = window.fetch.bind(window),
+        H = 'pubgwebgame-api.sisyphusbot.com';
+      function j(b) {
+        return new Response(JSON.stringify(b), {
+          status: 200, headers: { 'Content-Type': 'application/json' }
+        })
+      } window.fetch = async function (i, n) {
+        const u = typeof i === 'string' ? i : (i && i.url) || ''; if (u.includes(H)) {
+          console.log('[offline-stub] intercepted', u);
+          if (u.includes('/v1/public/rounds/start')) return j({
+            roundToken: 'local-round-' + Date.now()
+          });
+          if (u.includes('/v1/public/rounds/link')) return j({
+            linked: true
+          });
+          if (u.includes('/v1/public/rounds/submit')) return j({
+            rankApplied: false, topPercent: null
+          });
+          if (u.includes('/v1/public/rounds/revoke')) return j({
+            revoked: true
+          });
+          return j({})
+        } return R(i, n)
+      }
+    })();</script>
+
+  <script src="paradrop-game.js"></script>
+
+  <script>
+    const c = document.getElementById('game-root');
+    ParadropGame.init({
+      container: c,
+      locale: 'en',
+      gameParams: {
+        assetBaseUrl: window.location.origin + '/'
+      },
+      callbacks: {
+        onStart: () => {
+          console.log('[ParadropGame] onStart'); setTimeout(() => ParadropGame.beginRound({
+            sessionToken: 'local-dev-token', attemptIndex: 0
+          }), 0)
+        },
+        onError: e => console.error('[ParadropGame] error:', e),
+        onLoadError: m => console.error('[ParadropGame] load error:', m)
+      }
+    });</script>
+</body>
+
+</html>
